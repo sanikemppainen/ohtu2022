@@ -1,14 +1,23 @@
+from ostoskori import Ostoskori
 from varasto import Varasto
 from pankki import Pankki
-from ostoskori import Ostoskori
 from viitegeneraattori import Viitegeneraattori
 
+#poistetaan riippuvuuksia, korvataan niitä
+from varasto import Varasto as varasto_1
+from pankki import Pankki as pankki_1
+from viitegeneraattori import Viitegeneraattori as viitegeneraattori_1
 
 class Kauppa:
-    def __init__(self):
-        self._varasto = Varasto.get_instance()
-        self._pankki = Pankki.get_instance()
-        self._viitegeneraattori = Viitegeneraattori.get_instance()
+#väh riippuvaisuuksia määrittelemällä parametrissa)
+    def __init__(self, 
+        varasto: Varasto=varasto_1,
+        pankki:Pankki= pankki_1, 
+        viitegeneraattori: Viitegeneraattori=viitegeneraattori_1):
+
+        self._varasto = varasto
+        self._pankki = pankki
+        self._viitegeneraattori = viitegeneraattori
         self._kaupan_tili = "33333-44455"
 
     def aloita_asiointi(self):
