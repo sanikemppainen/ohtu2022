@@ -19,14 +19,17 @@ def main():
             int(player_dict['penalties']),
             int(player_dict['games']),
             player_dict['team']
-        )
+            )
         players.append(player)
 
     print("Oliot:")
 
+    players.sort(key=lambda x: x.get_points, reverse=True)
+
     for player in players:
         if player.nationality=='FIN':
             print(player)
+            
 
 
 if __name__ == "__main__":
