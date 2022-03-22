@@ -1,5 +1,6 @@
 *** Settings ***
 Resource  resource.robot
+Resource  loginresource.robot
 Suite Setup  Open And Configure Browser
 Suite Teardown  Close Browser
 Test Setup  Create User And Go To Login Page
@@ -16,6 +17,11 @@ Login With Incorrect Password
     Set Password  kalle456
     Submit Credentials
     Login Should Fail With Message  Invalid username or password
+
+Login With Nonexistent Username
+    Set Password  salasana
+    Submit Credentials
+    Login Should Fail With Message  Username and password are required
 
 *** Keywords ***
 Login Should Succeed
@@ -37,6 +43,7 @@ Set Password
     [Arguments]  ${password}
     Input Password  password  ${password}
 
+*** Keywords ***
 Create User And Go To Login Page
     Create User  kalle  kalle123
     Go To Login Page
